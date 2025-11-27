@@ -15,3 +15,26 @@ def pregunta_12():
     {'A': 177, 'B': 187, 'C': 114, 'D': 136, 'E': 324}
 
     """
+
+    columns = {}
+
+    with open("files/input/data.csv", "r") as file:
+        for line in file:
+            parts = line.strip().split("\t")
+            key = parts[0]
+            values = parts[4].strip().split(",")
+            total = 0
+
+            for value in values:
+                value = int(value.split(":")[1])
+                total += value
+            
+            if key in columns:
+                columns[key] += total
+            else:
+                columns[key] = total
+    
+    return dict(sorted(columns.items()))
+
+if __name__ == "__main__":
+    print(pregunta_12())

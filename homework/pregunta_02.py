@@ -15,3 +15,18 @@ def pregunta_02():
     [('A', 8), ('B', 7), ('C', 5), ('D', 6), ('E', 14)]
 
     """
+    columns = {}
+
+    with open("files/input/data.csv", "r") as file:
+        for line in file:
+            key = line[0]
+
+            if key in columns:
+                columns[key] += 1
+            else:
+                columns[key] = 1
+    
+    return sorted(columns.items())
+
+if  __name__ == "__main__":
+    print(pregunta_02())

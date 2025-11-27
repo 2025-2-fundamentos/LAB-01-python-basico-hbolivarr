@@ -15,3 +15,23 @@ def pregunta_03():
     [('A', 53), ('B', 36), ('C', 27), ('D', 31), ('E', 67)]
 
     """
+
+    columns = {}
+
+    with open("files/input/data.csv", "r") as file:
+        for line in file:
+
+            parts = line.strip().split("\t")
+
+            key = parts[0]
+            value = int(parts[1])
+
+            if key in columns:
+                columns[key] += value
+            else:
+                columns[key] = value
+
+    return sorted(columns.items())
+
+if  __name__ == "__main__":
+    print(pregunta_03())

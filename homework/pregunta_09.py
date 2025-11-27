@@ -24,3 +24,23 @@ def pregunta_09():
      'jjj': 18}}
 
     """
+
+    columns = {}
+
+    with open("files/input/data.csv", "r") as file:
+        for line in file:
+            parts = line.strip().split("\t")
+            key_values = parts[4].split(",")
+
+            for key_value in key_values:
+                key = key_value.split(":")[0]
+                
+                if key in columns:
+                    columns[key] +=1
+                else:
+                    columns[key] = 1
+    
+    return dict(sorted(columns.items()))
+
+if __name__ == "__main__":
+    print(pregunta_09())

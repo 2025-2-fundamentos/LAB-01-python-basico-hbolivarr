@@ -15,3 +15,25 @@ def pregunta_05():
     [('A', 9, 2), ('B', 9, 1), ('C', 9, 0), ('D', 8, 3), ('E', 9, 1)]
 
     """
+
+    with open("files/input/data.csv", "r") as file:
+        columns = {}
+
+        for line in file:
+            parts = line.strip().split("\t")
+
+            key = parts[0]
+            value = int(parts[1])
+
+            if key in columns:
+                current_max, current_min = columns[key]
+                columns[key] = (max(current_max, value), min(current_min, value))
+            else:
+                columns[key] = (value, value)
+            
+        result = [(key, valores[0], valores[1]) for key, valores in columns.items()]
+
+        return sorted(result)
+
+if  __name__ == "__main__":
+    print(pregunta_05())

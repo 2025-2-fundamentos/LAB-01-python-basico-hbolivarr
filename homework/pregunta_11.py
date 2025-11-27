@@ -16,3 +16,23 @@ def pregunta_11():
 
 
     """
+
+    columns = {}
+
+    with open("files/input/data.csv", "r") as file:
+
+        for line in file:
+            parts = line.strip().split("\t")
+            keys = parts[3].split(",")
+            value = int(parts[1])
+
+            for key in keys:
+                if key in columns:
+                    columns[key] += value
+                else:
+                    columns[key] = value
+        
+    return dict(sorted(columns.items()))
+
+if  __name__ == "__main__":
+    print(pregunta_11())

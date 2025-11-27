@@ -20,3 +20,21 @@ def pregunta_10():
 
 
     """
+
+    columns = []
+
+    with open("files/input/data.csv", "r") as file:
+        
+        for line in file:
+            parts = line.strip().split("\t")
+
+            key = parts[0]
+            num_col4 = len(parts[3].split(","))
+            num_col5 = len(parts[4].split(","))
+
+            columns.append((key, num_col4, num_col5))
+
+    return columns
+
+if  __name__ == "__main__":
+    print(pregunta_10())

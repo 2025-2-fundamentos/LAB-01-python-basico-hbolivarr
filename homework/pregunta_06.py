@@ -26,3 +26,27 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+
+    columns = {}
+
+    with open("files/input/data.csv", "r") as file:
+        for line in file:
+            parts = line.strip().split("\t")
+            dict_items = parts[4].split(",")
+
+            for item in dict_items:
+                key, value = item.split(":")
+                value = int(value)
+
+                if key in columns:
+                    current_min, current_max = columns[key]
+                    columns[key] = (min(current_min, value), max(current_max, value))
+                else:
+                    columns[key] = (value, value)
+        
+        resultado = [(key, valores[0], valores[1]) for key, valores in sorted(columns.items())]
+
+        return resultado
+
+if  __name__ == "__main__":
+    print(pregunta_06())
